@@ -1,0 +1,174 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  font-family: "METAB", sans-serif;
+  overflow-x: hidden;
+  //user-select: none;
+  -ms-overflow-style: none;
+  scrollbar-color: dark;
+  scrollbar-color: #294bf5 #000;
+  scrollbar-width: thin;
+}
+
+.video-header {
+  video {
+    object-fit: cover;
+    width: 100% !important;
+    height: 100vh !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+a[href^="http://maps.google.com/maps"]
+{
+  display: none !important;
+}
+a[href^="https://maps.google.com/maps"]
+{
+  display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+  display: none;
+}
+.gmnoprint div {
+  background: none !important;
+}
+
+.web3modal-modal-card {
+  z-index: 100000;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+button:focus {
+  box-shadow: none !important;
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+a:focus {
+  box-shadow: none !important;
+}
+
+input:focus {
+  box-shadow: none !important;
+}
+
+td,
+td::before,
+td::after {
+  border-color: #5032954a !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.floating-object {
+  animation-name: floating;
+  animation-duration: 3.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 15px);
+  }
+  to {
+    transform: translate(0, -0px);
+  }
+}
+
+/* inspired by: https://css-tricks.com/responsive-data-tables/ */
+
+.responsiveTable td .tdBefore {
+  display: none;
+}
+
+@media screen and (max-width: 40em) {
+  /*
+    Force table elements to not behave like tables anymore
+    Hide table headers (but not display: none; for accessibility)
+  */
+
+  .responsiveTable table,
+  .responsiveTable thead,
+  .responsiveTable tbody,
+  .responsiveTable th,
+  .responsiveTable td,
+  .responsiveTable tr {
+    display: block;
+  }
+
+  .responsiveTable thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .responsiveTable tbody tr {
+    padding: 0.25em;
+  }
+
+  .responsiveTable td.pivoted {
+    /* Behave like a "row" */
+
+    border: none !important;
+    position: relative;
+    padding-left: calc(50% + 10px) !important;
+    text-align: left !important;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    border-bottom: 1px solid #000 !important;
+  }
+
+  .responsiveTable td .tdBefore {
+    /* Now like a table header */
+    position: absolute;
+    display: block;
+
+    /* Top/left values mimic padding */
+    left: 1rem;
+    width: calc(50% - 20px);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    text-align: left !important;
+    font-weight: 600;
+  }
+}
+
+.article-content {
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border-radius: 10px;
+  }
+}

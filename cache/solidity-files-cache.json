@@ -1,0 +1,42 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/pierre/Desktop/metab-stacking/contracts/MarketplaceERC20.sol": {
+      "lastModificationDate": 1653395358315,
+      "contentHash": "8c15938cef0f25cf5f8ce1e904785f66",
+      "sourceName": "contracts/MarketplaceERC20.sol",
+      "solcConfig": {
+        "version": "0.8.14",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "ERC20",
+        "ERC721",
+        "Marketplace"
+      ]
+    }
+  }
+}

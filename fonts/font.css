@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "METAB";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./METAB.woff");
+}
+
+@font-face {
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./OpenSans.woff");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./Montserrat.woff");
+}
+
+@font-face {
+  font-family: "MontserratBold";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./MontserratBold.woff");
+}

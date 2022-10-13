@@ -1,0 +1,80 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model NFT {
+  id                    Int     @id @default(autoincrement())
+  title                 String
+  image                 String
+  tokenId               String
+  totalPrice            Float
+  stackingPrice         Float
+  totalSupply           Float
+  supply                Float
+  collectionSlug        String
+  collectionDescription String
+  tokenName             String
+  comingSoon            Boolean @default(false)
+}
+
+model NFTData {
+  id             Int    @id @default(autoincrement())
+  tokenId        String
+  collectionSlug String
+  userPrice      String
+  userAddress    String
+}
+
+model Map {
+  id     Int    @id @default(autoincrement())
+  wallet String @unique
+  lat    String
+  lng    String
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  wallet      String        @unique
+  name        String
+  mbucBalance String        @default("")
+  isApproval  Boolean       @default(false)
+  inventory   Product[]
+  claimReward ClaimReward[]
+}
+
+model Product {
+  id           Int     @id @default(autoincrement())
+  productId    String
+  alreadyClaim Boolean
+  owner        User    @relation(fields: [authorId], references: [wallet])
+  authorId     String
+  quantity     Int     @default(1)
+  oldContract  Boolean @default(false)
+}
+
+model RaffleWinner {
+  id        Int    @id @default(autoincrement())
+  productId String @unique
+  winner    String
+}
+
+model ClaimReward {
+  id           Int    @id @default(autoincrement())
+  productId    String
+  firstName    String @default("")
+  lastName     String @default("")
+  address      String @default("")
+  zip          String @default("")
+  city         String @default("")
+  country      String @default("")
+  clothingSize String @default("")
+  email        String @default("")
+  owner        User   @relation(fields: [userId], references: [wallet])
+  userId       String
+}
