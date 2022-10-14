@@ -26,16 +26,17 @@ module.exports = {
   paths: {
     artifacts: "./artifacts",
   },
-  defaultNetwork: "rinkeby",
+  //! defaultNetwork: "rinkeby",
+  defaultNetwork: "hardhat",
   networks: {
     hardhat: {
       //chainId: 1337,
-      chainId: 1,
+      //! chainId: 1,
     },
-    rinkeby: {
-      url: API_URL,
-      accounts: [`0x${PRIVATE_KEY}`],
-    },
+    //! rinkeby: {
+    //!   url: API_URL,
+    //!   accounts: [`0x${PRIVATE_KEY}`],
+    //! },
   },
   gasReporter: {
     currency: "EUR",

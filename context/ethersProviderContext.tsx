@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import { useRouter } from "next/router";
 import { providers } from "ethers";
 import { useDisclosure, useToast } from "@chakra-ui/react";
@@ -49,42 +50,70 @@ export const EthersProvider = ({ children }: any) => {
           infuraId: process.env.NEXT_PUBLIC_INFURA_API_KEY,
         },
       },
+      coinbasewallet: {
+        package: CoinbaseWalletSDK, 
+        options: {
+          appName: "Web 3 Modal Demo",
+          infuraId: process.env.NEXT_PUBLIC_INFURA_API_KEY, 
+        }
+      },
     };
     web3Modal = new Web3Modal({
-      network: "polygon",
+      //! network: "polygon",
+      network: "goerli",
       cacheProvider: true,
       providerOptions,
       disableInjectedProvider: false,
     });
   }
 
-  const connect = useCallback(async function () {
+  console.log(address);
+
+  const connect = async function () {
     try {
       setLoading(true);
       const provider = await web3Modal.connect();
       const web3Result = new providers.Web3Provider(provider);
       const signer = web3Result.getSigner();
+      const accounts = await web3Result.listAccounts();
       const address = await signer.getAddress();
       const network = await web3Result.getNetwork();
 
       setProvider(provider);
       setWeb3Provider(web3Result);
-      setAddress(address);
+      if(accounts) {
+        setAddress(accounts[0]);
+      } else {
+        setAddress(address);
+      }
       setChainId(network.chainId);
       setLoading(false);
-    } catch {
-      console.log("error");
+    } catch (e) {
+      //! console.log("error");
+      console.log(e);
     }
-  }, []);
+  };
 
   const disconnect = useCallback(
     async function () {
       setLoading(true);
 
+      if (provider && provider.isCoinbaseWallet) {
+        try {
+          provider.close();
+        } catch (e) { 
+          console.log(e)
+        }
+      } 
+
       await web3Modal.clearCachedProvider();
       if (provider) {
         if (provider.disconnect && typeof provider.disconnect === "function") {
-          await provider.disconnect();
+          try {
+            await provider.disconnect();
+          } catch (e) {
+            console.log(e);
+          }
         }
       }
 

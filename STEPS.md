@@ -1,0 +1,6 @@
+- yarn install
+- yarn run dev : failed
+- yarn add prisma
+- @prisma/client@dev prisma@dev
+- yarn prisma generate
+- yarn prisma migrate dev

@@ -25,6 +25,7 @@ import NftListContent from "../components/NftListContent/NftListContent";
 const { getEthPriceNow } = require("get-eth-price");
 import axios from "../lib/api";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import Router from "next/router";
 
 const MyWallet = () => {
   const [userData, setUserData] = useState<any>({});
@@ -296,6 +297,7 @@ const MyWallet = () => {
                   leftIcon={<BiWallet size={20} />}
                   onClick={() => {
                     disconnect();
+                    Router.back();
                   }}
                 >
                   Disconnect
